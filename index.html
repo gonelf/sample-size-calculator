@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </head>
   <body>
-    <div class="container center col-8">
+    <div class="container center col-8" id="cont">
       <h1 class="m-4">A/B Test helper</h1>
       <h6>Sample size, total sample size, and time to get results calculator</h6>
       <div class="jumbotron p-4">
@@ -123,14 +123,19 @@
             <span class="font-weight-bold text-primary ml-2 valueSpan2"></span>
           </div>
         </div>
+        <div class="col-6 text-right d-flex justify-content-center my-4">
+          <a id="download" class="btn btn-primary">Save image</a>
+        </div>
       </div>
     </div>
   </body>
-  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+
+  <script src="dom-to-image.min.js"></script>
+
   <script type="text/javascript" src="formulas.js"></script>
+  <script type="text/javascript" src="functions.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-
       const $valueSpan = $('.valueSpan2');
       const $value = $('#customRange11');
       $valueSpan.html($value.val()+"%");
@@ -139,39 +144,11 @@
         $valueSpan.html($value.val()+"%");
       });
     });
-    function update () {
-      var is_absolute = $("#is_absolute").is(':checked');
-      var statsig = $("#customRange11").val()/100;
-      var base = $("#baseline").val()/100;
-      var mde = $("#mde").val()/100;
-      mde = (is_absolute) ? mde : base*mde;
-
-      // sample size
-      var sample_size = calc(statsig, base, mde)
-      $("#sample_size").text(Math.ceil(sample_size));
-
-      // variants
-      var variants = $("#variants").val();
-      var total_sample_size = sample_size * variants;
-      $("#total_sample_size").text(Math.ceil(total_sample_size));
-
-      // traffic
-      var traffic = $("#traffic").val();
-      var days = total_sample_size / traffic * 7;
-      var time = getWeeks(days);
-      var weeks = (time.weeks > 0) ? Math.ceil(time.weeks) + " weeks and " : "";
-      $("#time").text(weeks + Math.ceil(time.days) + " days");
-
-      // range
-      var min = Math.round((base - mde) * 100);
-      var max = Math.round((base + mde) * 100);
-      $("#bottom").text("< "+min+"%");
-      $("#mid").text(min+"% - "+max+"%");
-      $("#top").text("> "+max+"%");
-      // $("#range").text(min+"% to "+max+"%");
-    }
     $("input").change(function(e){
       update();
+    })
+    $("#download").click(function(){
+      download();
     })
     update();
   </script>
