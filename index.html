@@ -17,6 +17,23 @@
       <div class="jumbotron p-4">
         <div class="mb-3 row">
           <div class="col-6">
+            <h3>Nr. of Variants</h3>
+          </div>
+          <div class="col-2">
+            <input type="text" class="form-control form-control-lg input-lg" id="variants" placeholder="Variants" value="2">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <div class="col-6">
+            <h3>Avg. traffic per week</h3>
+          </div>
+          <div class="input-group input-group-lg col-4">
+            <input type="text" class="form-control" id="traffic" placeholder="traffic" value="1000">
+            <span class="input-group-text">per week</span>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <div class="col-6">
             <h3>Baseline conversion rate</h3>
           </div>
           <div class="input-group input-group-lg col-2">
@@ -24,7 +41,7 @@
             <span class="input-group-text">%</span>
           </div>
         </div>
-        <div class="mb-3 row">
+        <div class="row">
           <div class="col-6">
             <h3>Minimum detectable effect</h3>
           </div>
@@ -36,6 +53,8 @@
             <input id="is_absolute" type="checkbox" checked data-toggle="toggle" data-size="lg" data-on="Absolute" data-off="Relative" data-onstyle="primary" data-offstyle="dark">
           </div>
         </div>
+      </div>
+      <div class="jumbotron p-4 bg-light">
         <div class="row">
           <div class="col-6">
             <h3>Expected results range</h3>
@@ -77,15 +96,6 @@
             </div>
             <div class="card-body">
               <h1 class="card-title" id="total_sample_size"></h1>
-
-            </div>
-            <div class="card-footer text-muted">
-              <div class="row">
-                <label for="variants" class="col-6 col-form-label">Nr. of Variants</label>
-                <div class="col-6">
-                  <input type="text" class="form-control form-control-lg input-lg" id="variants" placeholder="Variants" value="2">
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -96,14 +106,6 @@
             </div>
             <div class="card-body">
               <h1 class="card-title" id="time"></h1>
-            </div>
-            <div class="card-footer text-muted">
-              <div class="row">
-                <label for="traffic" class="col-6 col-form-label">Avg. traffic per week</label>
-                <div class="col-6">
-                  <input type="text" class="form-control form-control-lg input-lg" id="traffic" placeholder="traffic" value="1000">
-                </div>
-              </div>
             </div>
           </div>
         </div>
