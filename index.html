@@ -36,7 +36,7 @@
             <input id="is_absolute" type="checkbox" checked data-toggle="toggle" data-size="lg" data-on="Absolute" data-off="Relative" data-onstyle="primary" data-offstyle="dark">
           </div>
         </div>
-        <div class=" row">
+        <div class="row">
           <div class="col-6">
             <h3>Expected results range</h3>
           </div>
@@ -131,10 +131,10 @@
 
       const $valueSpan = $('.valueSpan2');
       const $value = $('#customRange11');
-      $valueSpan.html($value.val());
+      $valueSpan.html($value.val()+"%");
       $value.on('input change', () => {
 
-        $valueSpan.html($value.val());
+        $valueSpan.html($value.val()+"%");
       });
     });
     function update () {
