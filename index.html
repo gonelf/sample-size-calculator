@@ -14,7 +14,7 @@
     <div class="container center col-8">
       <h1 class="m-4">A/B Test helper</h1>
       <h6>Sample size, total sample size, and time to get results calculator</h6>
-      <div class="jumbotron">
+      <div class="jumbotron p-4">
         <div class="mb-3 row">
           <div class="col-6">
             <h3>Baseline conversion rate</h3>
@@ -157,7 +157,8 @@
       var traffic = $("#traffic").val();
       var days = total_sample_size / traffic * 7;
       var time = getWeeks(days);
-      $("#time").text(Math.ceil(time.weeks) + " weeks and " + Math.ceil(time.days) + " days");
+      var weeks = (time.weeks > 0) ? Math.ceil(time.weeks) + " weeks and " : "";
+      $("#time").text(weeks + Math.ceil(time.days) + " days");
 
       // range
       var min = Math.round((base - mde) * 100);
