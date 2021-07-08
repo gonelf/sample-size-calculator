@@ -3,60 +3,148 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   </head>
   <body>
-    <div class="container">
-      <h1>Sample size calculator</h1>
-      <div class="mb-3">
-        <label for="baseline" class="form-label">Baseline</label>
-        <input type="text" class="form-control" id="baseline" placeholder="Baseline" value="20">
+    <div class="container center col-8">
+      <h1 class="m-4">A/B Test helper</h1>
+      <h6>Sample size, total sample, time to get results calculators</h6>
+      <div class="jumbotron">
+        <div class="mb-3 row">
+          <div class="col-6">
+            <h3>Baseline conversion rate</h3>
+          </div>
+          <div class="input-group input-group-lg col-2">
+            <input type="text" class="form-control" id="baseline" placeholder="Baseline" value="20">
+            <span class="input-group-text">%</span>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <div class="col-6">
+            <h3>Minimum detectable effect</h3>
+          </div>
+          <div class="input-group input-group-lg col-2">
+            <input type="text" class="form-control" id="mde" placeholder="MDE" value="5">
+            <span class="input-group-text">%</span>
+          </div>
+          <div class="col-4">
+            <input id="is_absolute" type="checkbox" checked data-toggle="toggle" data-on="Absolute" data-off="Relative" data-onstyle="primary" data-offstyle="dark">
+          </div>
+        </div>
+        <div class=" row">
+          <div class="col-6">
+            <h3>Expected results range</h3>
+          </div>
+          <div class="col-2 bg-danger text-white p-3 rounded-left text-center">
+            <h6>Drop</h6>
+            <span id="bottom"></span>
+          </div>
+          <div class="col-2 bg-secondary text-white p-3 text-center">
+            <h6>No change</h6>
+            <span id="mid"></span>
+          </div>
+          <div class="col-2 bg-success p-3 rounded-right text-center">
+            <h6>Lift</h6>
+            <span id="top"></span>
+          </div>
+        </div>
       </div>
       <div class="mb-3">
-        <label for="mde" class="form-label">MDE</label>
-        <input type="text" class="form-control" id="mde" placeholder="MDE" value="5">
-      </div>
-      <div class="mb-3">
-        <label for="statsig" class="form-label">Satistical significance</label>
-        <input type="text" class="form-control" id="statsig" placeholder="Satistical significance" value="95">
+        <div class="form-check form-switch">
+        </div>
       </div>
       <div class="row">
         <div class="col-4">
-          <h3>Sample size</h3>
-          <h1 id="sample_size"></h1>
-          <h6>per variation</h6>
-        </div>
-        <div class="col-4">
-          <div class="row mb-3">
-            <label for="variants" class="col-6 col-form-label">Nr. of Variants</label>
-            <div class="col-6">
-              <input type="text" class="form-control" id="variants" placeholder="Variants" value="2">
+          <div class="card mb-4 box-shadow h-100 text-center">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Sample size</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title" id="sample_size"></h1>
+              <h6>per variation</h6>
             </div>
           </div>
-          <h3>Total sample size</h3>
-          <h1 id="total_sample_size"></h1>
         </div>
         <div class="col-4">
-          <div class="row mb-3">
-            <label for="traffic" class="col-6 col-form-label">Avg. traffic per week</label>
-            <div class="col-6">
-              <input type="text" class="form-control" id="traffic" placeholder="traffic" value="1000">
+          <div class="card mb-4 box-shadow h-100 text-center">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Total sample size</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title" id="total_sample_size"></h1>
+
+            </div>
+            <div class="card-footer text-muted">
+              <div class="row">
+                <label for="variants" class="col-6 col-form-label">Nr. of Variants</label>
+                <div class="col-6">
+                  <input type="text" class="form-control form-control-lg input-lg" id="variants" placeholder="Variants" value="2">
+                </div>
+              </div>
             </div>
           </div>
-          <h3>Time to get results</h3>
-          <h1 id="time"></h1>
+        </div>
+        <div class="col-4">
+          <div class="card mb-4 box-shadow h-100 text-center">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Time to get results</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title" id="time"></h1>
+            </div>
+            <div class="card-footer text-muted">
+              <div class="row">
+                <label for="traffic" class="col-6 col-form-label">Avg. traffic per week</label>
+                <div class="col-6">
+                  <input type="text" class="form-control form-control-lg input-lg" id="traffic" placeholder="traffic" value="1000">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <div class="col-3 d-flex justify-content-center my-4">
+          <label for="statsig" class="form-label">Satistical significance</label>
+        </div>
+        <div class="col-3">
+          <div class="d-flex justify-content-center my-4">
+            <div class="w-75">
+              <input type="range" class="custom-range" id="customRange11" min="60" max="100" step="5" value="95">
+            </div>
+            <span class="font-weight-bold text-primary ml-2 valueSpan2"></span>
+          </div>
         </div>
       </div>
     </div>
   </body>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
   <script type="text/javascript" src="formulas.js"></script>
   <script type="text/javascript">
+    $(document).ready(function() {
+
+      const $valueSpan = $('.valueSpan2');
+      const $value = $('#customRange11');
+      $valueSpan.html($value.val());
+      $value.on('input change', () => {
+
+        $valueSpan.html($value.val());
+      });
+    });
     function update () {
-      var statsig = $("#statsig").val()/100;
+      var is_absolute = $("#is_absolute").is(':checked');
+      var statsig = $("#customRange11").val()/100;
       var base = $("#baseline").val()/100;
       var mde = $("#mde").val()/100;
+      mde = (is_absolute) ? mde : base*mde;
+
+      // sample size
       var sample_size = calc(statsig, base, mde)
       $("#sample_size").text(Math.ceil(sample_size));
 
@@ -65,10 +153,19 @@
       var total_sample_size = sample_size * variants;
       $("#total_sample_size").text(Math.ceil(total_sample_size));
 
+      // traffic
       var traffic = $("#traffic").val();
       var days = total_sample_size / traffic * 7;
       var time = getWeeks(days);
       $("#time").text(Math.ceil(time.weeks) + " weeks and " + Math.ceil(time.days) + " days");
+
+      // range
+      var min = Math.round((base - mde) * 100);
+      var max = Math.round((base + mde) * 100);
+      $("#bottom").text("< "+min+"%");
+      $("#mid").text(min+"% - "+max+"%");
+      $("#top").text("> "+max+"%");
+      // $("#range").text(min+"% to "+max+"%");
     }
     $("input").change(function(e){
       update();
