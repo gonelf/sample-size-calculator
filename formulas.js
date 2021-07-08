@@ -88,3 +88,10 @@ function calc (statsig, base, mde){
   var power = statsig-alpha;
   return num_subjects(alpha, power, base, mde);
 }
+
+function getWeeks(days) {
+  return {
+    weeks : Math.floor(days / 7),
+    days : days % 7
+  };
+}

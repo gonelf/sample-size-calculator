@@ -27,6 +27,26 @@
           <h1 id="sample_size"></h1>
           <h6>per variation</h6>
         </div>
+        <div class="col-4">
+          <div class="row mb-3">
+            <label for="variants" class="col-6 col-form-label">Nr. of Variants</label>
+            <div class="col-6">
+              <input type="text" class="form-control" id="variants" placeholder="Variants" value="2">
+            </div>
+          </div>
+          <h3>Total sample size</h3>
+          <h1 id="total_sample_size"></h1>
+        </div>
+        <div class="col-4">
+          <div class="row mb-3">
+            <label for="traffic" class="col-6 col-form-label">Avg. traffic per week</label>
+            <div class="col-6">
+              <input type="text" class="form-control" id="traffic" placeholder="traffic" value="1000">
+            </div>
+          </div>
+          <h3>Time to get results</h3>
+          <h1 id="time"></h1>
+        </div>
       </div>
     </div>
   </body>
@@ -37,8 +57,18 @@
       var statsig = $("#statsig").val()/100;
       var base = $("#baseline").val()/100;
       var mde = $("#mde").val()/100;
-      var res = calc(statsig, base, mde)
-      $("#sample_size").text(Math.ceil(res));
+      var sample_size = calc(statsig, base, mde)
+      $("#sample_size").text(Math.ceil(sample_size));
+
+      // variants
+      var variants = $("#variants").val();
+      var total_sample_size = sample_size * variants;
+      $("#total_sample_size").text(Math.ceil(total_sample_size));
+
+      var traffic = $("#traffic").val();
+      var days = total_sample_size / traffic * 7;
+      var time = getWeeks(days);
+      $("#time").text(Math.ceil(time.weeks) + " weeks and " + Math.ceil(time.days) + " days");
     }
     $("input").change(function(e){
       update();
