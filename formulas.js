@@ -85,7 +85,11 @@ function num_subjects(alpha, power_level, p, delta) {
 
 function calc (statsig, base, mde){
   var alpha = 0.05;
-  var power = statsig-alpha;
+  var power = statsig;
+  if (statsig > 0.95){
+    alpha = 0.01;
+    power = 0.95;
+  }
   return num_subjects(alpha, power, base, mde);
 }
 
