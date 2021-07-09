@@ -35,7 +35,7 @@ function save (img) {
 }
 function update () {
   var is_absolute = $("#is_absolute").is(':checked');
-  var statsig = $("#customRange11").val()/100;
+  var statsig = $("#statsig").val()/100;
   var base = $("#baseline").val()/100;
   var mde = $("#mde").val()/100;
   mde = (is_absolute) ? mde : base*mde;
@@ -63,4 +63,28 @@ function update () {
   $("#mid").text(min+"% - "+max+"%");
   $("#top").text("> "+max+"%");
   // $("#range").text(min+"% to "+max+"%");
+
+  // statsig
+  const $valueSpan = $('.valueSpan2');
+  const $value = $('#statsig');
+  $valueSpan.html($value.val()+"%");
 }
+
+function set_init_values(){
+  $("#variants").val(2);
+  $("#traffic").val(5000);
+  $("#baseline").val(20);
+  $("#mde").val(5);
+  $("#statsig").val(90);
+}
+
+$(document).ready(function() {
+  set_init_values();
+  update();
+});
+$("input").on("input change", (e) => {
+  update();
+});
+$("#download").click(function(){
+  download();
+})

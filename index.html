@@ -118,7 +118,7 @@
         <div class="col-3">
           <div class="d-flex justify-content-center my-4">
             <div class="w-75">
-              <input type="range" class="custom-range" id="customRange11" min="60" max="100" step="5" value="95">
+              <input type="range" class="custom-range" id="statsig" min="60" max="100" step="5" value="95">
             </div>
             <span class="font-weight-bold text-primary ml-2 valueSpan2"></span>
           </div>
@@ -134,22 +134,4 @@
 
   <script type="text/javascript" src="formulas.js"></script>
   <script type="text/javascript" src="functions.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      const $valueSpan = $('.valueSpan2');
-      const $value = $('#customRange11');
-      $valueSpan.html($value.val()+"%");
-      $value.on('input change', () => {
-
-        $valueSpan.html($value.val()+"%");
-      });
-    });
-    $("input").change(function(e){
-      update();
-    })
-    $("#download").click(function(){
-      download();
-    })
-    update();
-  </script>
 </html>
