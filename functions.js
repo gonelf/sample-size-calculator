@@ -1,4 +1,15 @@
+function prepare_for_download(){
+  $("#cont").removeClass("container");
+  $("#cont").addClass("bg-white");
+  $("#cont").addClass("p-4");
+}
+function reset_default(){
+  $("#cont").addClass("container");
+  $("#cont").removeClass("bg-light");
+  $("#cont").removeClass("p-4");
+}
 function download(){
+  prepare_for_download();
   var node = document.getElementById('cont');
 
   domtoimage.toPng(node)
@@ -20,6 +31,7 @@ function save (img) {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  reset_default();
 }
 function update () {
   var is_absolute = $("#is_absolute").is(':checked');
