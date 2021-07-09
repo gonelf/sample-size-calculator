@@ -9,6 +9,8 @@
 
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   </head>
   <body id="body">
     <div class="container center" id="cont">
@@ -111,20 +113,20 @@
         </div>
       </div>
 
-      <div class="mb-3 row">
-        <div class="col-3 d-flex justify-content-center my-4">
+      <div class="mb-3 mt-4 row">
+        <div class="col-3 d-flex justify-content-center">
           <label for="statsig" class="form-label">Satistical significance</label>
         </div>
         <div class="col-3">
-          <div class="d-flex justify-content-center my-4">
+          <div class="d-flex justify-content-center">
             <div class="w-75">
               <input type="range" class="custom-range" id="statsig" min="60" max="100" step="5" value="95">
             </div>
             <span class="font-weight-bold text-primary ml-2 valueSpan2"></span>
           </div>
         </div>
-        <div class="col-6 text-right d-flex justify-content-center my-4">
-          <a id="download" class="btn btn-primary">Save image</a>
+        <div class="col-6 text-right">
+          <button id="download" class="btn btn-primary"><i class="bi bi-download"></i> Save as image</button>
         </div>
       </div>
     </div>
