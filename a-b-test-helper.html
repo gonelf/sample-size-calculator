@@ -37,6 +37,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/icon/favicon-16x16.png">
     <link rel="manifest" href="./assets/icon/site.webmanifest">
 
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="GCFjjAOisDRjyzGzMzmtZC4EYp1TNJ9s";analytics.SNIPPET_VERSION="4.13.2";
+      analytics.load("GCFjjAOisDRjyzGzMzmtZC4EYp1TNJ9s");
+      analytics.page();
+      }}();
+    </script>
   </head>
   <body id="body">
     <!-- Navigation-->
@@ -166,12 +172,7 @@
     <div class="copyright py-4 text-center text-white">
         <div class="container"><small>Copyright &copy; Goncalo.PM 2021</small></div>
     </div>
-    <script>
-      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="GCFjjAOisDRjyzGzMzmtZC4EYp1TNJ9s";analytics.SNIPPET_VERSION="4.13.2";
-      analytics.load("GCFjjAOisDRjyzGzMzmtZC4EYp1TNJ9s");
-      analytics.page();
-      }}();
-    </script>
+
   </body>
 
   <script src="dom-to-image.min.js"></script>
