@@ -152,7 +152,9 @@
           var twitter = document.getElementById('btn-twitter');
           var linkedin = document.getElementById('btn-linkedin');
 
-          analytics.trackLink(link, 'Clicked a-b-test-helper');
+          analytics.trackLink(helper, 'Clicked a-b-test-helper');
+          analytics.trackLink(twitter, 'Clicked twitter');
+          analytics.trackLink(linkedin, 'Clicked linkedin');
 
           analytics.page('Home');
         </script>
