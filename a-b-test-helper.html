@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Goncalo.PM - A/B test helper tool</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <meta property="og:title" content="Goncalo.PM - A/B test helper tool">
+    <meta property="og:description" content="Sample size, total sample size, and time to get results calculator.">
+    <meta property="og:image" content="./assets/img/portfolio/ab-test-1-1.jpeg">
+    <meta property="og:url" content="a-b-test-helper.htm">
+
+    <meta name="twitter:title" content="Goncalo.PM - A/B test helper tool">
+    <meta name="twitter:description" content="Sample size, total sample size, and time to get results calculator.">
+    <meta name="twitter:image" content="./assets/img/portfolio/ab-test-1-1.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/icon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/icon/site.webmanifest">
+
+  </head>
+  <body id="body">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">Goncalo.pm</a>
+        </div>
+    </nav>
+    <!-- Masthead-->
+    <div class="container center" id="cont">
+      <h1 class="m-4">A/B Test helper tool</h1>
+      <h6>Sample size, total sample size, and time to get results calculator</h6>
+      <div class="jumbotron p-4">
+        <div class="mb-3 row">
+          <div class="col-12 col-md-6 text-right">
+            <h3>Nr. of Variants</h3>
+          </div>
+          <div class="col-12 col-md-2">
+            <input type="text" class="form-control form-control-lg input-lg" id="variants" placeholder="Variants" value="2">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <div class="col-12 col-md-6 text-right">
+            <h3>Avg. traffic per week</h3>
+          </div>
+          <div class="input-group-lg col-12 col-md-3">
+            <input type="text" class="form-control" id="traffic" placeholder="traffic" value="5000">
+            <!-- <span class="input-group-text">per week</span> -->
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <div class="col-12 col-md-6 text-right">
+            <h3>Baseline conversion rate</h3>
+          </div>
+          <div class="col-12 col-md-3 input-group input-group-lg">
+            <input type="text" class="form-control h-100" id="baseline" placeholder="Baseline" value="20">
+            <span class="input-group-text">%</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 text-right">
+            <h3>Minimum detectable effect</h3>
+          </div>
+          <div class="col-6 col-md-3 input-group input-group-lg">
+            <input type="text" class="form-control h-100" id="mde" placeholder="MDE" value="5">
+            <span class="input-group-text">%</span>
+          </div>
+          <div class="col-6 col-md-3">
+            <input id="is_absolute" class="h-100" type="checkbox" checked data-toggle="toggle" data-size="lg" data-on="Absolute" data-off="Relative" data-onstyle="primary" data-offstyle="dark">
+          </div>
+        </div>
+      </div>
+      <div class="jumbotron p-4 bg-light">
+        <div class="row">
+          <div class="col-sm-6 col-12">
+            <h3>Expected results range</h3>
+          </div>
+          <div class="col-sm-2 col-4 bg-danger text-white p-3 rounded-left text-center">
+            <h6>Drop</h6>
+            <span id="bottom"></span>
+          </div>
+          <div class="col-sm-2 col-4 bg-secondary text-white p-3 text-center">
+            <h6>No change</h6>
+            <span id="mid"></span>
+          </div>
+          <div class="col-sm-2 col-4 bg-success text-white p-3 rounded-right text-center">
+            <h6>Lift</h6>
+            <span id="top"></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 col-12 mb-3">
+          <div class="card mb-4 box-shadow h-100 text-center">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Sample size</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title" id="sample_size"></h1>
+              <h6>per variation</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 col-12 mb-3">
+          <div class="card mb-4 box-shadow h-100 text-center">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Total sample size</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title" id="total_sample_size"></h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 col-12 mb-3">
+          <div class="card mb-4 box-shadow h-100 text-center">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Time to get results</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title" id="time"></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 col-6 mb-3 mt-4 d-flex justify-content-center">
+          <label for="statsig" class="form-label">Satistical significance</label>
+        </div>
+        <div class="col-sm-3 col-6 mb-3 mt-4">
+          <div class="d-flex justify-content-center">
+            <div class="w-75">
+              <input type="range" class="custom-range" id="statsig" min="60" max="100" step="5" value="95">
+            </div>
+            <span class="font-weight-bold text-primary ml-2 valueSpan2"></span>
+          </div>
+        </div>
+        <div id="save" class="col-sm-6 col-12 mb-3 mt-4 text-right">
+          <button id="download" class="btn btn-primary  w-100"><i class="bi bi-download"></i> Save as image</button>
+        </div>
+        <div id="powered" class="text-center text-uppercase col-sm-6 col-12 mb-3 mt-4 text-right" style="display: none;">
+          <h3>www.Goncalo.PM</h3>
+        </div>
+      </div>
+    </div>
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright &copy; Goncalo.PM 2021</small></div>
+    </div>
+  </body>
+
+  <script src="dom-to-image.min.js"></script>
+
+  <script type="text/javascript" src="formulas.js"></script>
+  <script type="text/javascript" src="functions.js"></script>
+</html>

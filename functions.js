@@ -2,11 +2,15 @@ function prepare_for_download(){
   $("#cont").removeClass("container");
   $("#cont").addClass("bg-white");
   $("#cont").addClass("p-4");
+  $("#save").hide();
+  $("#powered").show();
 }
 function reset_default(){
   $("#cont").addClass("container");
-  $("#cont").removeClass("bg-light");
+  $("#cont").removeClass("bg-white");
   $("#cont").removeClass("p-4");
+  $("#save").show();
+  $("#powered").hide();
 }
 function download(){
   prepare_for_download();
