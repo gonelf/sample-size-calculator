@@ -87,8 +87,10 @@ $(document).ready(function() {
   update();
 });
 $("input").on("input change", (e) => {
+  analytics.track('change data');
   update();
 });
 $("#download").click(function(){
+  analytics.track('save as image');
   download();
 })

@@ -88,7 +88,7 @@
                     <!-- Portfolio Item 1-->
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto text-center">
-                          <a href="a-b-test-helper.html" target="_blank" style="text-decoration: none !important;">
+                          <a id="a-b-test-helper" href="a-b-test-helper.html" target="_blank" style="text-decoration: none !important;">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
@@ -117,8 +117,8 @@
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4">Let's connect</h4>
                         <!-- <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a> -->
-                        <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/gonelf" target="_blank"><i class="fab fa-fw fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/ghenriques/" target="_blank"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                        <a id="btn-twitter" class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/gonelf" target="_blank"><i class="fab fa-fw fa-twitter"></i></a>
+                        <a id="btn-linkedin" class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/ghenriques/" target="_blank"><i class="fab fa-fw fa-linkedin-in"></i></a>
                         <!-- <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a> -->
                     </div>
                     <!-- Footer About Text-->
@@ -147,6 +147,12 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script type="text/javascript">
+          var helper = document.getElementById('a-b-test-helper');
+          var twitter = document.getElementById('btn-twitter');
+          var linkedin = document.getElementById('btn-linkedin');
 
+          analytics.trackLink(link, 'Clicked a-b-test-helper');
+        </script>
     </body>
 </html>
